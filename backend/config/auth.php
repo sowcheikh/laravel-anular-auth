@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'twt',
+            'driver' => 'jwt',
             'provider' => 'users',
             'hash' => false,
         ],

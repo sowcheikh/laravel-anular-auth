@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
     password: null
   }
 
+  public error =  null;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -20,15 +22,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     // console.log(this.form);
-    return this.http.post('http://localhost:8000/api/auth/login', this.form).subscribe(
+    return this.http.post('http://localhost:8000/api/login', this.form).subscribe(
       data => console.log(data),
-      error => console.log(error)
-
-
-
+      error => this.handleError(error)
     )
+  }
 
-
+  handleError(error: any) {
+  this.error = error.error.error;
   }
 
 }
