@@ -1,1 +1,43 @@
-<p>singup works!</p>
+<div class="mt-4 col-8 offset-2">
+  <div class="card">
+    <div class="card-header">Register Here</div>
+    <div class="card-body">
+      <form #registerForm=ngForm (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+          <label for="exampleInputName" class="form-label">Name</label>
+         <div class="col-sm-10">
+          <input type="text" name="name" class="form-control" [(ngModel)]="form.name" id="exampleInputName" aria-describedby="nameHelp" required>
+         </div>
+         <div class="alert alert-danger" [hidden]="!error.name"> {{error.name}} </div>
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+         <div class="col-sm-10">
+          <input type="email" name="email" class="form-control" [(ngModel)]="form.email" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+         </div>
+         <div class="alert alert-danger" [hidden]="!error.email"> {{error.email}} </div>
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" name="password" class="form-control" [(ngModel)]="form.password" id="exampleInputPassword1" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="exampleInputPasswordConfirmation" class="form-label">Confirm Password</label>
+          <div class="col-sm-10">
+            <input type="password" name="password_confirmation" class="form-control" [(ngModel)]="form.password_confirmation" id="exampleInputPasswordConfirmation" required>
+          </div>
+          <div class="alert alert-danger" [hidden]="!error.password"> {{error.password}} </div>
+        </div>
+        <div class="form-group row mt-3">
+          <div class="col-sm-10">
+            <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary float-right">
+              Register
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
