@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,14 +15,14 @@ export class LoginComponent implements OnInit {
 
   public error =  null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
     // console.log(this.form);
-    return this.http.post('http://localhost:8000/api/login', this.form).subscribe(
+    return this.auth.login(this.form).subscribe(
       data => console.log(data),
       error => this.handleError(error)
     )
