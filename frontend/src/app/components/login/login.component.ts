@@ -1,3 +1,4 @@
+import { TokenService } from './../../services/token.service';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   public error =  null;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService,
+              private token: TokenService) { }
 
   ngOnInit(): void {
   }
@@ -23,9 +25,13 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     // console.log(this.form);
     return this.auth.login(this.form).subscribe(
-      data => console.log(data),
+      data => this.handleResponse(data),
       error => this.handleError(error)
     )
+  }
+
+  handleResponse(data: any) {
+    this.token.handle(data.access_token);
   }
 
   handleError(error: any) {
